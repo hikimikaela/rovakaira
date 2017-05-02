@@ -1,0 +1,36 @@
+import React, { Component } from 'react';
+import { Button } from 'office-ui-fabric-react/lib/Button';
+import ReactDOM from 'react-dom';
+
+class MainSearch extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state= { term:'' };
+}
+  render() {
+  return (
+    <div>
+    Hae asiakastietokannasta
+    <div className="ms-Grid-row ms-Grid-col ms-u-sm12">
+      <div className="ms-Grid-col ms-u-sm12">
+    
+        <Button id="search-button">
+          Hae
+        </Button>
+        <Button id="clear-button">
+         Tyhjennä
+      </Button>
+    </div>
+    </div>
+    </div>
+
+  );
+}
+
+
+};
+
+
+
+export default MainSearch;
