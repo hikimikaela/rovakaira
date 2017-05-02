@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import ReactDOM from 'react-dom';
-  let filters = [{
+  let filters = {
     "include": {
       "kayttopaikka": "",
       "nimi": "",
       "puhelinnumero": "",
       "sahkoposti": "",
     },
-    "exclude": {}
-  }];
+    "exclude": {
+      "kayttopaikka": "",
+      "nimi": "",
+      "puhelinnumero": "",
+      "sahkoposti": "",
+    }
+  };
 
 
 class MainSearch extends Component {
@@ -34,13 +39,20 @@ handleChange({ target }) {
 
 includeFilter (fieldName, fieldValue) {
 debugger;
- filters[0].include.fieldName.push(fieldValue);
+ // 1. hae "filters" taulu
+ // 2. hae "filters" taulusta "include" taulu
+ // 3. hae "include" taulusta fieldName muuttujassa oleva taulu
+ // 4. laita fieldValuessa oleva arvo siihen muuttujaan
+ // 5. profit ????
+ filters["include"][fieldName] = fieldValue;
  console.log(filters);
 
 }
-excludeFilter (fieldValue) {
-  let excludeFilters = [];
+excludeFilter (fieldName, fieldValue) {
 
+filters['exclude'][fieldName] = fieldValue;
+console.log(filters['exclude']);
+debugger;
 }
 
 
@@ -55,8 +67,8 @@ excludeFilter (fieldValue) {
 
         <div className="inputfield">
           <input name="kayttopaikka" placeholder="Kayttopaikan tunnus" id="padded" value={this.state.kayttopaikka} onChange={this.handleChange}/>
-          <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.includeFilter(kayttopaikka, this.state.kayttopaikka) }}></i>
-          <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+          <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.includeFilter("kayttopaikka", this.state.kayttopaikka) }}></i>
+          <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true" onClick={ ()=>{this.excludeFilter("kayttopaikka", this.state.kayttopaikka) }}></i>
         </div>
 
           <div className="inputfield">
