@@ -67,3 +67,26 @@ nav {
     width: 740px;
     height: 400px;
   }
+
+  #padded {
+
+    width: 100%;
+  }
+
+  .inputfield {
+    position: relative;
+  }
+
+  .inputfield > i {
+    position: absolute;
+  }
+
+  .inputfield > .addfield {
+    right: 30px;
+    top: 3px;
+  }
+
+  .inputfield > .subtractfield {
+    right: 5px;
+    top: 3px;
+  }

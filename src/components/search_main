@@ -1,28 +1,263 @@
 import React, { Component } from 'react';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import ReactDOM from 'react-dom';
+  let filters = [{
+    "include": {
+      "kayttopaikka": "",
+      "nimi": "",
+      "puhelinnumero": "",
+      "sahkoposti": "",
+    },
+    "exclude": {}
+  }];
+
 
 class MainSearch extends Component {
   constructor(props) {
     super(props);
 
-    this.state= { term:'' };
+    this.state= {
+      kayttopaikka: null,
+      nimi: null,
+      puhelinnumero: null,
+      sahkoposti: null
+
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+
 }
+
+handleChange({ target }) {
+  this.setState({ [target.name]: target.value });
+}
+
+includeFilter (fieldName, fieldValue) {
+debugger;
+ filters[0].include.fieldName.push(fieldValue);
+ console.log(filters);
+
+}
+excludeFilter (fieldValue) {
+  let excludeFilters = [];
+
+}
+
+
   render() {
   return (
     <div>
     Hae asiakastietokannasta
-    <div className="ms-Grid-row ms-Grid-col ms-u-sm12">
-      <div className="ms-Grid-col ms-u-sm12">
-    
+    <div className="ms-Grid">
+      <div className="ms-Grid-row">
+
+        <div className="ms-Grid-col ms-u-md6 ms-u-lg6">
+
+        <div className="inputfield">
+          <input name="kayttopaikka" placeholder="Kayttopaikan tunnus" id="padded" value={this.state.kayttopaikka} onChange={this.handleChange}/>
+          <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.includeFilter(kayttopaikka, this.state.kayttopaikka) }}></i>
+          <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+        </div>
+
+          <div className="inputfield">
+      <input name="nimi" placeholder="nimi" id="padded" value={this.state.nimi} onChange={this.handleChange}/>
+      <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.includeFilter(this.state.nimi) }}></i>
+      <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+    </div>
+
+    <div className="inputfield">
+<input name="puhelinnumero" placeholder="puhelinnumero" id="padded" value={this.state.puhelinnumero} onChange={this.handleChange}/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.includeFilter(this.state.puhelinnumero) }}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+<div className="inputfield">
+<input name="sahkoposti" placeholder="sahkoposti" id="padded" value={this.state.sahkoposti} onChange={this.handleChange}/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.includeFilter(this.state.sahkoposti) }}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true" onClick={ ()=>{this.publish(this.state.sahkoposti) }}></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+
+
+        </div>
+
+        <div className="ms-Grid-col ms-u-md6 ms-u-lg6">
+
+        <div className="inputfield">
+    <input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+    <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+    <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+    </div>
+
+
+    <div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+<div className="inputfield">
+<input name="kayttapaikan tunnus" placeholder="Kayttopaikan tunnus" id="padded"/>
+<i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={this.onSearchTermChange}></i>
+<i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true"></i>
+</div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+  <div className="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
         <Button id="search-button">
           Hae
         </Button>
         <Button id="clear-button">
-         Tyhjennä
+         Tyhjenna
       </Button>
-    </div>
-    </div>
+      </div>
     </div>
 
   );
