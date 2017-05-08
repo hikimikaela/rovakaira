@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/Dialog';
 import { Button, ButtonType } from 'office-ui-fabric-react/lib/Button';
 import { ChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import { TextField } from 'office-ui-fabric-react/lib/TextField';
+
+
 
 
 
@@ -10,26 +13,35 @@ export class DialogBasicExample extends React.Component {
   constructor() {
     super();
   this.state = {
-  showDialog: true
+  showDialog: true,
+  messageTitle: ''
+  //selectedItem: null
+
 };
   }
 
+  onTitleChange(text) {
+    this.setState({messageTitle: text });
+  }
+
+/*
   onSaveMidEditInput() {
+
     let { viestiPohjat } = this.state;
-    viestiPohjat.push({ text: this.state.inputValue.substr(0, 10), key: viestiPohjat.length + "uniikkikey", content: this.state.inputValue });
+    viestiPohjat.push({ text: this.state.dialogTextFieldValue, key: viestiPohjat.length + "uniikkikey", content: this.state.dialogInputValue });
     this.setState({
       showDialog: false
     });
   }
+*/
   render() {
 console.log('dialog render');
-let {whenSaved} = this.props;
+let {whenSaved, whenChange} = this.props;
     return (
 
       <div>
         <Dialog
           isOpen={ this.state.showDialog }
-          //isOpen={ this.props.showDialog }
           type={ DialogType.normal }
           onDismiss={ this._closeDialog.bind(this) }
           title='Tallenna viestipohjaksi'
@@ -37,26 +49,11 @@ let {whenSaved} = this.props;
           isBlocking={ false }
           containerClassName='ms-dialogMainOverride'
         >
-          <ChoiceGroup
-            options={ [
-              {
-                key: 'A',
-                text: 'Kylla'
 
-              },
-
-              {
-                key: 'B',
-                text: 'En',
-                checked: true
-              }
-            ] }
-            onChanged={ this._onChoiceChanged }
-          />
-          { null }
+        <TextField onChanged={this.onTitleChange.bind(this)} />
           <DialogFooter>
-            <Button onClick={ this._closeDialog.bind(this) }>Palaa</Button>
-            <Button buttonType={ ButtonType.primary } onClick={ this.props.whenSaved }>Jatka</Button>
+            <Button onClick={ this.props.whenChange }>Jatka tallentamatta</Button>
+            <Button buttonType={ ButtonType.primary } ref="dialogInputValue" onClick={() => this.props.whenSaved(this.state.messageTitle) }>Tallenna viestipohjaksi</Button>
 
 
           </DialogFooter>
@@ -65,17 +62,14 @@ let {whenSaved} = this.props;
     );
   }
 
-  todellaClicked() {
-    this.props.whenSaved()
-  }
-
    _showDialog() {
     this.setState({ showDialog: true });
   }
 
-_closeDialog() {
-    this.setState({ showDialog: false });
-  }
+  _closeDialog() {
+      this.setState({ showDialog: false });
+  // dialogInputValue: selectedItem.content
+    }
 
   _onChoiceChanged() {
     console.log('Choice option change');

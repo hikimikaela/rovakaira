@@ -61,12 +61,12 @@ const DayPickerStrings: IDatePickerStrings = {
 };
 
 export interface IDatePickerBasicExampleState {
-  firstDayOfWeek?: DayOfWeek;
+  firstDayOfWeek ?: DayOfWeek;
 }
 
 export class DatePickerBasicExample extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       firstDayOfWeek: DayOfWeek.Sunday
@@ -79,7 +79,7 @@ export class DatePickerBasicExample extends React.Component {
     return (
       <div>
         <DatePicker firstDayOfWeek={ firstDayOfWeek } strings={ DayPickerStrings } placeholder='Select a date...' />
-
+      
       </div>
     );
   }

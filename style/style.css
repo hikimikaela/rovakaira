@@ -90,3 +90,38 @@ nav {
     right: 5px;
     top: 3px;
   }
+
+#time {
+  width: 3%;
+}
+
+.two-column {
+  column-count: 2;
+}
+
+body .form-control.valid {
+  border: 1px solid transparent;
+  border-color: transparent;
+}
+
+body .form-control.invalid {
+  border: 1px solid red;
+  border-color: red;
+}
+
+.form-control:focus {
+  outline: none;
+}
+
+.filter-tag > span{
+  padding: 5px;
+  margin-right: 5px;
+  color: #FFF;
+}
+.include > span {
+  background: green;
+}
+
+.exclude > span {
+  background: red;
+}
