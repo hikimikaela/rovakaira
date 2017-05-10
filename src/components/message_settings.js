@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import { DialogBasicExample } from './dialog_box';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+//import { Consts } from './config/constants.js'
 
 
 export class DropdownBasicExample extends React.Component {

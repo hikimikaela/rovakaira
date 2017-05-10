@@ -1,203 +1,131 @@
-  import React, { Component } from 'react';
-  import { Button } from 'office-ui-fabric-react/lib/Button';
-  import ReactDOM from 'react-dom';
-  import _ from 'lodash';
+    import React, { Component } from 'react';
+    import { Button } from 'office-ui-fabric-react/lib/Button';
+    import ReactDOM from 'react-dom';
+    import { filterFields } from '../config/constants.js';
+    import _ from 'lodash';
 
 
-    let filters = {
-      "include": {
-        /*
-        "kayttopaikka": "",
-        "nimi": "",
-        "puhelinnumero": "",
-        "sahkoposti": "",
-        "Osapuolityypit": "",
-        "Asiakasnumero": "",
-        "Asiakkaan osoite": "",
-        "Asiakkaan postinumero": "",
-        "Asiakkaan postitoimipaikka": "",
-        "Tuote": "",
-        "Kayttopaikan nykyinen status": "",
-        "Osoite": "",
-        "Postinumero": "",
-        "Myyntisopimuksen paattymispaiva": "",
-        "Postitoimipaikka": "",
-        "Sulakekoko": "",
-        "Muuntopiste": "",
-        "Tyyppikayttaja": "",
-        "Mittarin sijainti": "",
-        "Huoltovarmuusluokka": "",
-        "Etakytkentalaite": "",
-        "Vastuuyksikko": "",
-        "Mittarin numero": "",
-        "Mittarin malli": "",
-        "Liittyman tunnus": "",
-        "Myyja": "",
-        "Myyntituote": "", */
-      },
-      "exclude": { /*
-        "kayttopaikka": "",
-        "nimi": "",
-        "puhelinnumero": "",
-        "sahkoposti": "",
-        "Osapuolityypit": "",
-        "Asiakasnumero": "",
-        "Asiakkaan osoite": "",
-        "Asiakkaan postinumero": "",
-        "Asiakkaan postitoimipaikka": "",
-        "Tuote": "",
-        "Kayttopaikan nykyinen status": "",
-        "Osoite": "",
-        "Postinumero": "",
-        "Myyntisopimuksen paattymispaiva": "",
-        "Postitoimipaikka": "",
-        "Sulakekoko": "",
-        "Muuntopiste": "",
-        "Tyyppikayttaja": "",
-        "Mittarin sijainti": "",
-        "Huoltovarmuusluokka": "",
-        "Etakytkentalaite": "",
-        "Vastuuyksikko": "",
-        "Mittarin numero": "",
-        "Mittarin malli": "",
-        "Liittyman tunnus": "",
-        "Myyja": "",
-        "Myyntituote": "", */
 
+    class MainSearch extends Component {
+      constructor(props) {
+        super(props);
 
+        this.state= {
+          filters: {
+            "include": {},
+            "exclude": {}
+          }
+        };
+
+        //this.handleChange = this.handleChange.bind(this);
+  }
+
+    handleChange({ target }) {
+      console.log(this.state)
+      this.setState({ [target.name]: target.value });
+
+    }
+
+    renderFilter(filterObj, i) {
+      return (
+        <div className="inputfield" key={i}>
+        <input name={filterObj.name} placeholder={filterObj.placeholder} id="padded" value={this.state[filterObj.name]} onChange={(t) =>  { this.handleChange(t)}}/>
+        <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.addFilter(filterObj.name) }}></i>
+        <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true" onClick={ ()=>{this.addFilter(filterObj.name, true) }}></i>
+        </div>
+      )
+    }
+
+    // 1. hae "filters" taulu
+    // 2. hae "filters" taulusta "include" taulu
+    // 3. hae "include" taulusta fieldName muuttujassa oleva taulu
+    // 4. laita fieldValuessa oleva arvo siihen muuttujaan
+    // 5. profit ????
+    addFilter(fieldName, exclude) {
+      //debugger;
+      let filters = this.state.filters;
+      let value = this.state[fieldName]
+      let type = exclude ? "exclude" : "include"
+      //let key = filters[type][fieldName]
+      if (!(filters[type][fieldName])) { //Jos ei löydy arvoa
+        filters[type][fieldName] = [value];
+        //this.setState({key: [value]})
+      } else { //Arvo löytyy, oletetaan että se on array, ja heitetään push
+        filters[type][fieldName].push(value);
+        //this.setState({filters[type][fieldName].push(value)})
       }
+      var newState = {}
+      newState[fieldName] = null;
+      //debugger;
+      newState.filters = filters;
+      this.setState(newState);
+      //this.setState({filters: filters });
+      //debugger;
+    }
+
+  removeFilter(fieldName, exclude, index) {
+    //etsi oikea taulu:
+    //debugger;
+    let type = "include"
+    if (exclude) {
+      type = "exclude"
+    }
+    let newState = this.state.filters;
+    ///  poista taulusta oikea indeksi:
+    //debugger;
+    console.log(newState[type][fieldName])
+    newState[type][fieldName].splice(index, 1)
+    //aseta stateen uudet filtterit
+    this.setState({ filters: newState })
+  }
+
+  clearArray() {
+    let filters = {
+      "include": {},
+      "exclude": {}
     };
 
-
-  class MainSearch extends Component {
-    constructor(props) {
-      super(props);
-
-      this.state= {
-        filters: {
-          include: {},
-          exclude: {}
-        },
-        kayttopaikka: null,
-        nimi: null,
-        puhelinnumero: null,
-        sahkoposti: null,
-        osapuolityypit: null,
-        asiakasnumero: null,
-        asiakkaanosoite: null,
-        asiakkaanpostinumero: null,
-        asiakkaanpostitoimipaikka: null,
-        tuote: null,
-        kayttopaikannykyinenstatus: null,
-        osoite: null,
-        postinumero: null,
-        myyntisopimuksenpaattymispaiva: null,
-        postitoimipaikka: null,
-        sulakekoko: null,
-        muuntopiste: null,
-        tyyppikayttaja: null,
-        mittarinsijainti: null,
-        huoltovarmuusluokka: null,
-        etakytkentalaite: null,
-        vastuuyksikko: null,
-        mittarinnumero: null,
-        mittarinmalli: null,
-        liittymantunnus: null,
-        myyja: null,
-        myyntituote: null,
-
-      };
-
-      this.handleChange = this.handleChange.bind(this);
-}
-
-  handleChange({ target }) {
-    this.setState({ [target.name]: target.value });
-  }
-
-  renderFilter(filterObj, i) {
-    return (
-      <div className="inputfield" key={i}>
-      <input name={filterObj.name} placeholder={filterObj.placeholder} id="padded" value={this.state[filterObj.name]} onChange={this.handleChange}/>
-      <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.addFilter(filterObj.name) }}></i>
-      <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true" onClick={ ()=>{this.addFilter(filterObj.name, true) }}></i>
-      </div>
-    )
-  }
-
-  // 1. hae "filters" taulu
-  // 2. hae "filters" taulusta "include" taulu
-  // 3. hae "include" taulusta fieldName muuttujassa oleva taulu
-  // 4. laita fieldValuessa oleva arvo siihen muuttujaan
-  // 5. profit ????
-  addFilter(fieldName, exclude) {
-    let value = this.state[fieldName]
-    let type = exclude ? "exclude" : "include"
-    if (!(filters[type][fieldName])) { //Jos ei löydy arvoa
-      filters[type][fieldName] = [value];
-    } else { //Arvo löytyy, oletetaan että se on array, ja heitetään push
-      filters[type][fieldName].push(value);
-    }
-    var clearState = {}
-    clearState[fieldName] = null;
-    this.setState(clearState);
-
+    this.setState({ filters: { include: {}, exclude: {} }});
+    console.log(filters)
   }
 
 
-clearArray() {
-  let filters = {
-    "include": {},
-    "exclude": {}
-  };
-
-  this.setState({ filters: { include: {}, exclude: {} }});
-  console.log(filters)
-}
-
-renderColumn(items, index) {
-  //var width = 12 / this.props.columns
-  var className = "ms-Grid-col ms-u-md12 ms-u-lg12 two-column";
-  return (
-    <div key={index} className={className}>
-    {items}
-    </div>
-    )
-}
 
   render() {
 
   //Tehdään lista kaikista filterFieldeistä. RenderFilter palauttaa arvon mitä tulisi olla.
+  let columns = [];
   var inputFields = this.props.filterFields.map(function(obj, i) {
-    return this.renderFilter(obj, i)
+    return columns.push(this.renderFilter(obj, i));
   }.bind(this))
 
-  let columns = [];
-  var itemsLeft = inputFields.length
 
-  //Jaotellaan inputFieldit omiin columneihinsa
-  for (let i = 0; i < this.props.columns; i++) {
-    let colItems = Math.ceil(itemsLeft / this.props.columns)
-    itemsLeft -= colItems;
-    var column = this.renderColumn(inputFields.splice(0, colItems), i)
-    columns.push(column);
-  }
+  let filters = this.state.filters;
   console.log(filters)
+
   return (
     <div>
     {this.props.title}
     <div className="ms-Grid">
-      <div className="ms-Grid-row">
+      <div className="ms-Grid-row two-column">
         {columns}
         </div>
     </div>
 
     <div>
       {_.map(filters.include, function(val, name) {
-          return <div key={name}><span><b>{name}</b></span>:<span className='filter-tag include'>{val}</span></div>
+          return <div key={name}><span><b>{name}</b></span>:<span className='filter-tag include'>{
+        val.map((value, i) => {
+          return <span key={i} onClick={() => { this.removeFilter(name, false, i) }}>{value}</span>
+        })
+      }</span></div>
       }, this)}
       {_.map(filters.exclude, function(val, name) {
-          return <div key={name}><span><b>{name}</b></span>:<span className='filter-tag exclude'>{val}</span></div>
+          return <div key={name}><span><b>{name}</b></span>:<span className='filter-tag exclude'>{
+        val.map((value, i) => {
+          return <span key={i} onClick={() => { this.removeFilter(name, true, i) }}>{value}</span>
+        })
+      }</span></div>
       }, this)}
     </div>
 

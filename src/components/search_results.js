@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import ReactDOM from 'react-dom';
+//import { Consts } from './config/constants.js'
 
 const SearchResults = () => {
   return (

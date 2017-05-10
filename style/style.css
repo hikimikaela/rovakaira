@@ -80,6 +80,9 @@ nav {
   .inputfield > i {
     position: absolute;
   }
+  .include > i {
+    position: absolute;
+  }
 
   .inputfield > .addfield {
     right: 30px;
@@ -114,9 +117,22 @@ body .form-control.invalid {
 }
 
 .filter-tag > span{
-  padding: 5px;
+  padding: 5px 6px 5px ;
   margin-right: 5px;
   color: #FFF;
+}
+
+.filter-tag > span:after {
+  margin-left: 3px;
+font-size: 13px;
+content: '\E711';
+-moz-osx-font-smoothing: grayscale;
+-webkit-font-smoothing: antialiased;
+display: inline-block;
+font-family: FabricMDL2Icons;
+font-style: normal;
+font-weight: 400;
+speak: none;
 }
 .include > span {
   background: green;
@@ -124,4 +140,6 @@ body .form-control.invalid {
 
 .exclude > span {
   background: red;
+
+
 }

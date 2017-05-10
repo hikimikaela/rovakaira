@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Button } from 'office-ui-fabric-react/lib/Button';
-///import * as moment from 'moment';
-//import Moment from 'react-moment';
-//import './node_modules/moment';
+import { TextField } from 'office-ui-fabric-react/lib/TextField';
+//import { Consts } from './config/constants.js'
 
 
 
@@ -42,12 +41,14 @@ class Time extends Component {
       <div className="ms-Grid-row ms-Grid-col ms-u-sm12">
       <label>
       Kellonaika
+
       <input
         value={this.state.time}
         type="text"
         placeholder="aika muodossa 00:00"
         className={this.state.valid ? "form-control valid" : "form-control invalid"}
         onChange={ this.isValid.bind(this) } />
+      
         </label>
       </div>
       <div className="ms-Grid-row ms-Grid-col ms-u-sm12">

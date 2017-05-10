@@ -3,6 +3,7 @@ import { Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/Dia
 import { Button, ButtonType } from 'office-ui-fabric-react/lib/Button';
 import { ChoiceGroup } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+//import { Consts } from './config/constants.js'
 
 
 
