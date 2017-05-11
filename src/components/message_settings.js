@@ -99,7 +99,7 @@ onChangeMidEditInput() {
             </div>
             <div>
 
-                <TextField multiline autoAdjustHeight ref="inputValue" value={inputValue} onChanged={this.onInputChange.bind(this)}/>
+                <TextField multiline autoAdjustHeight className="hover nohover" ref="inputValue" value={inputValue} onChanged={this.onInputChange.bind(this)}/>
 
             </div>
         </div>

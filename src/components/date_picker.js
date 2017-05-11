@@ -22,7 +22,7 @@ export class DatePickerBasicExample extends React.Component {
 
     return (
       <div>
-        <DatePicker firstDayOfWeek={ firstDayOfWeek } strings={ DayPickerStrings } placeholder='Select a date...' />
+        <DatePicker firstDayOfWeek={ firstDayOfWeek } strings={ DayPickerStrings } placeholder='Valitse lähetysajankohta...' />
 
       </div>
     );

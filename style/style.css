@@ -40,7 +40,7 @@ nav {
 }
 #nav ul {
   list-style: none;
-  background-color: rgb(82, 86, 89);
+  background-color: none;
   text-align: right;
   display: inline-block;
 
@@ -66,27 +66,36 @@ nav {
   textarea {
     width: 740px;
     height: 400px;
+
+  }
+  .hover:not(.nohover){
+    border: 5px;
+
   }
 
-  #padded {
+  #field {
 
     width: 100%;
   }
 
   .inputfield {
     position: relative;
+    margin: 10px;
   }
 
   .inputfield > i {
     position: absolute;
+
   }
   .include > i {
     position: absolute;
+
   }
 
   .inputfield > .addfield {
     right: 30px;
     top: 3px;
+
   }
 
   .inputfield > .subtractfield {
@@ -96,20 +105,25 @@ nav {
 
 #time {
   width: 3%;
+
 }
 
 .two-column {
   column-count: 2;
+
 }
 
 body .form-control.valid {
   border: 1px solid transparent;
-  border-color: transparent;
+  border-color: #c8c8c8;
+  border-radius: 0px;
+  height: 32px;
 }
 
 body .form-control.invalid {
   border: 1px solid red;
   border-color: red;
+  height: 32px;
 }
 
 .form-control:focus {
@@ -117,13 +131,13 @@ body .form-control.invalid {
 }
 
 .filter-tag > span{
-  padding: 5px 6px 5px ;
+  padding: 4px 5px 4px ;
   margin-right: 5px;
   color: #FFF;
 }
 
 .filter-tag > span:after {
-  margin-left: 3px;
+margin-left: 3px;
 font-size: 13px;
 content: '\E711';
 -moz-osx-font-smoothing: grayscale;
@@ -135,11 +149,23 @@ font-weight: 400;
 speak: none;
 }
 .include > span {
+
   background: green;
+  border-radius: 5px;
 }
 
 .exclude > span {
   background: red;
+  border-radius: 5px;
+}
+#exclude {
+  margin-top: 15px;
 
+}
+#include {
+  margin-top: 15px;
+}
 
+.ms-DatePicker-weekday {
+  text-align: center;
 }

@@ -15,9 +15,9 @@ import { filterFields } from './config/constants.js'
 const App = () => {
 
   return (
-    <div>
+    <div className="ms-font-m">
       <Navigation />
-    <div className="ms-Grid-row ms-Grid-col ms-u-sm12">
+    <div className="ms-Grid-row ms-Grid-col ms-u-sm12 ms-font-s-plus">
 
 
     <MainSearch filterFields={filterFields} title="Hae asiakastietokannasta" columns="2"/>

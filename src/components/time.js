@@ -38,17 +38,17 @@ class Time extends Component {
 
     return (
       <div>
-      <div className="ms-Grid-row ms-Grid-col ms-u-sm12">
+      <div className="ms-Grid-row ms-Grid-col ms-u-sm12 ms-font-s-plus">
       <label>
       Kellonaika
 
       <input
         value={this.state.time}
         type="text"
-        placeholder="aika muodossa 00:00"
         className={this.state.valid ? "form-control valid" : "form-control invalid"}
+        placeholder="Aika muodossa 00:00"
         onChange={ this.isValid.bind(this) } />
-      
+
         </label>
       </div>
       <div className="ms-Grid-row ms-Grid-col ms-u-sm12">

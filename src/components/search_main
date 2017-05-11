@@ -16,8 +16,6 @@
             "exclude": {}
           }
         };
-
-        //this.handleChange = this.handleChange.bind(this);
   }
 
     handleChange({ target }) {
@@ -29,54 +27,47 @@
     renderFilter(filterObj, i) {
       return (
         <div className="inputfield" key={i}>
-        <input name={filterObj.name} placeholder={filterObj.placeholder} id="padded" value={this.state[filterObj.name]} onChange={(t) =>  { this.handleChange(t)}}/>
+        <input name={filterObj.name} placeholder={filterObj.placeholder} id="field" value={this.state[filterObj.name]} onChange={(t) =>  { this.handleChange(t)}}/>
         <i className="ms-Icon ms-Icon--Add addfield" aria-hidden="true" onClick={ ()=>{this.addFilter(filterObj.name) }}></i>
         <i className="ms-Icon ms-Icon--Remove subtractfield" aria-hidden="true" onClick={ ()=>{this.addFilter(filterObj.name, true) }}></i>
         </div>
       )
     }
 
-    // 1. hae "filters" taulu
-    // 2. hae "filters" taulusta "include" taulu
-    // 3. hae "include" taulusta fieldName muuttujassa oleva taulu
-    // 4. laita fieldValuessa oleva arvo siihen muuttujaan
-    // 5. profit ????
-    addFilter(fieldName, exclude) {
-      //debugger;
+      addFilter(fieldName, exclude) {
+
       let filters = this.state.filters;
       let value = this.state[fieldName]
-      let type = exclude ? "exclude" : "include"
-      //let key = filters[type][fieldName]
-      if (!(filters[type][fieldName])) { //Jos ei löydy arvoa
-        filters[type][fieldName] = [value];
-        //this.setState({key: [value]})
-      } else { //Arvo löytyy, oletetaan että se on array, ja heitetään push
-        filters[type][fieldName].push(value);
-        //this.setState({filters[type][fieldName].push(value)})
+      if (value != undefined) {
+        let type = exclude ? "exclude" : "include"
+        if (!(filters[type][fieldName])) {
+          filters[type][fieldName] = [value];
+
+        }  else  {
+          filters[type][fieldName].push(value);
+        }
+
+        var newState = {}
+        newState[fieldName] = null;
+        newState.filters = filters;
+        this.setState(newState);
       }
-      var newState = {}
-      newState[fieldName] = null;
-      //debugger;
-      newState.filters = filters;
-      this.setState(newState);
-      //this.setState({filters: filters });
-      //debugger;
     }
 
   removeFilter(fieldName, exclude, index) {
-    //etsi oikea taulu:
-    //debugger;
     let type = "include"
     if (exclude) {
       type = "exclude"
     }
+
     let newState = this.state.filters;
-    ///  poista taulusta oikea indeksi:
-    //debugger;
     console.log(newState[type][fieldName])
     newState[type][fieldName].splice(index, 1)
     //aseta stateen uudet filtterit
     this.setState({ filters: newState })
+    if (newState[type][fieldName].length < 1) {
+      delete newState[type][fieldName]
+    }
   }
 
   clearArray() {
@@ -99,9 +90,9 @@
     return columns.push(this.renderFilter(obj, i));
   }.bind(this))
 
-
   let filters = this.state.filters;
   console.log(filters)
+
 
   return (
     <div>
@@ -114,14 +105,14 @@
 
     <div>
       {_.map(filters.include, function(val, name) {
-          return <div key={name}><span><b>{name}</b></span>:<span className='filter-tag include'>{
+          return <div key={name} id="include"><span><b>{name}</b></span>: <span className='filter-tag include'>{
         val.map((value, i) => {
           return <span key={i} onClick={() => { this.removeFilter(name, false, i) }}>{value}</span>
         })
       }</span></div>
       }, this)}
       {_.map(filters.exclude, function(val, name) {
-          return <div key={name}><span><b>{name}</b></span>:<span className='filter-tag exclude'>{
+          return <div key={name} id="exclude"><span><b>{name}</b></span>: <span className='filter-tag exclude'>{
         val.map((value, i) => {
           return <span key={i} onClick={() => { this.removeFilter(name, true, i) }}>{value}</span>
         })
@@ -131,7 +122,7 @@
 
     <div className="ms-Grid-row ms-Grid-col ms-u-sm12">
       <div className="ms-Grid-col ms-u-sm12">
-          <Button id="search-button" >
+          <Button id="search-button">
             Hae
           </Button>
           <Button id="clear-button" onClick={this.clearArray.bind(this)}>
