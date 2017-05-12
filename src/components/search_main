@@ -98,7 +98,7 @@
     <div>
     {this.props.title}
     <div className="ms-Grid">
-      <div className="ms-Grid-row two-column">
+      <div className="ms-Grid-row columns">
         {columns}
         </div>
     </div>

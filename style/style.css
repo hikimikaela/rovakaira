@@ -9,7 +9,31 @@
   padding: 20px;
   box-shadow: 1px 1px 2px #8e8f91;
 }
+.columns {
+  column-count: 2;
+}
 
+.dropzone {
+  style = {
+    width: 613,
+    height: 200,
+    borderWidth: 2,
+    borderColor: '#666',
+    borderStyle: 'dashed',
+    borderRadius: 5
+  };
+  activeStyle = {
+    borderStyle: 'solid',
+    borderColor: '#6c6',
+    backgroundColor: '#eee'
+  };
+  rejectStyle = {
+    borderStyle: 'solid',
+    borderColor: '#c66',
+    backgroundColor: '#eee'
+  };
+
+}
     #continue-button {
         background-color: #8C8C8C;
       }
