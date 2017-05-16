@@ -17,12 +17,7 @@ class Time extends Component {
     };
 }
 
-//let valid = moment({this.state.time}, "HH:mm", true).isValid();
-//isValid() {
 
-//}
-//miksei taa toimi
-//let valid = moment({this.state.time}, "HH:mm", true).isValid();
   isValid(ev) {
     this.setState({time:ev.target.value})
     if(ev.target.value.length == 0 || ev.target.value.match("^([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]$)")) {

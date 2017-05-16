@@ -14,24 +14,8 @@
 }
 
 .dropzone {
-  style = {
-    width: 613,
-    height: 200,
-    borderWidth: 2,
-    borderColor: '#666',
-    borderStyle: 'dashed',
-    borderRadius: 5
-  };
-  activeStyle = {
-    borderStyle: 'solid',
-    borderColor: '#6c6',
-    backgroundColor: '#eee'
-  };
-  rejectStyle = {
-    borderStyle: 'solid',
-    borderColor: '#c66',
-    backgroundColor: '#eee'
-  };
+text-align: center;
+font-size: 16px;
 
 }
     #continue-button {
@@ -134,7 +118,15 @@ nav {
 
 .two-column {
   column-count: 2;
+  margin-top: 0px;
 
+}
+
+
+#acceptedFiles {
+  margin-left: -40px;
+  padding-top: 10px;
+  list-style: square;
 }
 
 body .form-control.valid {
@@ -148,6 +140,25 @@ body .form-control.invalid {
   border: 1px solid red;
   border-color: red;
   height: 32px;
+}
+
+body .filetype.invalid {
+  color: red;
+}
+
+body .filetype.valid {
+color: green;
+}
+
+.dropzonearea {
+  padding: 30px;
+  margin-left: -30px;
+}
+#ptext {
+ padding-top: 15px;
+}
+.background {
+  background-color: #D6D6D6;
 }
 
 .form-control:focus {

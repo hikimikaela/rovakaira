@@ -3,6 +3,7 @@
     import ReactDOM from 'react-dom';
     import { filterFields } from '../config/constants.js';
     import _ from 'lodash';
+    const stringify = require('json-stable-stringify');
 
 
 
@@ -38,8 +39,10 @@
 
       let filters = this.state.filters;
       let value = this.state[fieldName]
+      let heading = "Otsikko"+ this.state.type;
       if (value != undefined) {
         let type = exclude ? "exclude" : "include"
+
         if (!(filters[type][fieldName])) {
           filters[type][fieldName] = [value];
 
@@ -48,10 +51,16 @@
         }
 
         var newState = {}
+
         newState[fieldName] = null;
         newState.filters = filters;
+
         this.setState(newState);
+
+        debugger;
+        console.log(stringify(filters))
       }
+
     }
 
   removeFilter(fieldName, exclude, index) {

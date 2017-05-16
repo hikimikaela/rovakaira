@@ -1,23 +1,45 @@
-import 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Dropzone from 'react-dropzone';
 
 
 
+class Basic extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      accepted: [],
+      rejected: [],
 
-style = {
-  width: 613,
-  height: 200,
-  borderWidth: 2,
-  borderColor: '#666',
-  borderStyle: 'dashed',
-  borderRadius: 5
-};
-activeStyle = {
-  borderStyle: 'solid',
-  borderColor: '#6c6',
-  backgroundColor: '#eee'
-};
-rejectStyle = {
-  borderStyle: 'solid',
-  borderColor: '#c66',
-  backgroundColor: '#eee'
-};
+
+    }
+
+  }
+
+
+  render() {
+
+    return (
+      <section>
+      <p className="ms-font-m">
+      Hae tiedostolla
+      </p>
+        <div className="dropzone ms-font-s-plus">
+          <Dropzone
+           accept="image/png"
+           onDrop={(accepted, rejected) => { this.setState({ accepted, rejected }); }}>
+            <p id="ptext">Drag or click to upload</p>
+          </Dropzone>
+        </div>
+            <aside>
+            {this.state.accepted.map(f => <li className='filetype valid' key={f.name}>{f.name} - {f.size}</li>)}
+            {this.state.rejected.map(f => <li className='fileType invalid' key={f.name}>{f.name} - {f.size}</li>)}
+            </aside>
+      </section>
+    );
+  }
+}
+
+<Basic />
+
+export default Basic;
